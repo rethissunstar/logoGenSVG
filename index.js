@@ -1,13 +1,13 @@
 const inquirer = require('inquirer');
 const { generateLogo } = require('./lib/logoGenerator');
+const { Circle, Square, Triangle } = require('./lib/shapes');
 
 const runApplication = async () => {
   const answers = await inquirer.prompt([
     {
       type: 'input',
-      name: 'text',
-      message: 'Enter up to three characters:',
-      validate: (input) => input.length <= 3,
+      name: 'logoName',
+      message: 'Enter the logo name:',
     },
     {
       type: 'input',
@@ -15,7 +15,7 @@ const runApplication = async () => {
       message: 'Enter the text color (keyword or hexadecimal number):',
     },
     {
-      type: 'checkbox',
+      type: 'list',
       name: 'shape',
       message: 'Choose a shape:',
       choices: ['circle', 'triangle', 'square'],
@@ -27,12 +27,28 @@ const runApplication = async () => {
     },
   ]);
 
-  await generateLogo(
-    answers.text,
-    answers.textColor,
-    answers.shape,
-    answers.shapeColor
-  );
+  let shape;
+
+  switch (answers.shape) {
+    case 'circle':
+      shape = new Circle();
+      break;
+    case 'triangle':
+      shape = new Triangle();
+      break;
+    case 'square':
+      shape = new Square();
+      break;
+    default:
+      console.error('Invalid shape');
+      return;
+  }
+
+  shape.logoName = answers.logoName;
+  shape.textColor = answers.textColor;
+  shape.setColor(answers.shapeColor);
+
+  await generateLogo(shape);
 };
 
 runApplication();
