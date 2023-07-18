@@ -8,6 +8,7 @@ const runApplication = async () => {
       type: 'input',
       name: 'logoName',
       message: 'Enter the logo name:',
+      validate: (input) => input.length <= 3,
     },
     {
       type: 'input',

@@ -1,8 +1,8 @@
 
   <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     <g>
-      <polygon points="150, 18 244, 182 56, 182" fill="green" />
-      <text x="150" y="114" text-anchor="middle" font-size="45" fill="white">aim</text>
+      <circle cx="150" cy="100" r="50" fill="blue" />
+      <text x="150" y="114" text-anchor="middle" font-size="45" fill="white">AIM</text>
     </g>    
   </svg>
   
